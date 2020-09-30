@@ -6,6 +6,8 @@ const classNames = require("classnames");
 
 export default function InterviewerList(props) {
 
+ 
+
   const interviewerClass = classNames("interviewers", {
     interviewers__header: props.header,
     interviewers__list: props.list
@@ -16,8 +18,8 @@ export default function InterviewerList(props) {
     key={interviewer.id}
     name={interviewer.name}
     avatar={interviewer.avatar}
-    selected={interviewer.id === props.interviewer }
-    setInterviewer={event => props.setInterviewer(interviewer.id)}
+    selected={interviewer.id === props.value }
+    setInterviewer={event => props.onChange(interviewer.id)}
     />
   ))
   
