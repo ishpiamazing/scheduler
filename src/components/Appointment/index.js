@@ -19,6 +19,15 @@ const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
 
+function save(name, interviewer) {
+  const interview = {
+    student: name,
+    interviewer
+  };
+  props.bookInterview(props.id, interview);
+  transition(SHOW);
+}
+
 const {mode, transition, back} = useVisualMode(
   props.interview ? SHOW : EMPTY
 )
@@ -40,6 +49,7 @@ const {mode, transition, back} = useVisualMode(
       <Form 
       interviewers = {props.interviewers}
       onCancel={() => back()}
+      onSave ={save}
       />
     )}
   </article>
