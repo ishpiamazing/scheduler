@@ -13,10 +13,12 @@ export default function useVisualMode(initial) {
   }
   
   function back() {
-    if(history[history.length-1] != initial) {
-      history.pop();
-      setMode(() => history[history.length-1])
+    let newHistory = [...history];
+    if(newHistory.length > 1 ){
+      newHistory = newHistory.slice(0, -1);
     }
+    setHistory(newHistory);
+    setMode(newHistory[newHistory.length -1]);
   }
 
   return { mode, transition, back };
