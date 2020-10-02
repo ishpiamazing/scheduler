@@ -6,6 +6,7 @@ import Empty from "components/Appointment/Empty";
 import useVisualMode from "hooks/useVisualMode";
 import Form from "components/Appointment/Form";
 
+
 import "components/Appointment/styles.scss"
 
 const classNames = require('classnames')
@@ -37,7 +38,7 @@ const {mode, transition, back} = useVisualMode(
 
     {mode === CREATE && (
       <Form 
-      interviewers = {[]}
+      interviewers = {props.interviewers}
       onCancel={() => back()}
       />
     )}
