@@ -7,6 +7,7 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
+import Error from "components/Appointment/Error"
 
 
 import "components/Appointment/styles.scss"
@@ -25,6 +26,9 @@ const SAVING = "SAVING";
 const DELETE = "DELETE";
 const CONFIRM = "CONFIRM";
 const EDIT ="EDIT";
+const ERROR_SAVE ="ERROR_SAVE";
+const ERROR_DELETE="ERROR_DELETE";
+
 
 const {mode, transition, back} = useVisualMode(
   props.interview ? SHOW : EMPTY
@@ -37,13 +41,15 @@ function save(name, interviewer) {
   };
   transition(SAVING);
   props.bookInterview(props.id, interview)
-  .then(() => transition(SHOW));
+  .then(() => transition(SHOW))
+  .catch(error =>transition(ERROR_SAVE,true));
 }
 
 function cancel() {
   transition(DELETE, true);
   props.cancelInterview(props.id)
-  .then(() => transition(EMPTY));
+  .then(() => transition(EMPTY))
+  .catch(error => transition(ERROR_DELETE,true));
 }
 
 
@@ -85,6 +91,22 @@ function cancel() {
       interviewer={props.interview.interviewer}
       onSave={save}
       onCancel={()=>back()}
+      />
+    )}
+
+
+    {mode === ERROR_SAVE &&  (
+      <Error
+      message ="Unable to book appointment.Please try again later."
+      onClose={()=>back()}
+      />
+    )}
+
+
+    {mode === ERROR_DELETE &&  (
+      <Error
+      message ="Unable to delete appointment.Please try again later."
+      onClose={()=>back()}
       />
     )}
   </article>
