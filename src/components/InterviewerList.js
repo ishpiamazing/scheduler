@@ -7,7 +7,11 @@ const classNames = require("classnames");
 
 export default function InterviewerList(props) {
 
- 
+ // code for InterviewerList component that validates the value and onChange props.
+ InterviewerList.propTypes = {
+  interviewer: PropTypes.number,
+  setInterviewer: PropTypes.func.isRequired
+};
 
   const interviewerClass = classNames("interviewers", {
     interviewers__header: props.header,

@@ -24,7 +24,12 @@ export function useApplicationData() {
     const setDay = day => setState({ ...state, day });
 
     function bookInterview(id, interview) {
-      // console.log(id, interview)
+      
+      const days= [...state.days];
+      const day = days.find((d)  => d.name === state.day)
+      if(!state.appointments[id].interview) {
+        day.spots--;
+      }
       const appointment = {
         ...state.appointments[id],
         interview: { ...interview }
@@ -33,17 +38,19 @@ export function useApplicationData() {
         ...state.appointments,
         [id]: appointment
       };
-      return axios.put(`api/appointments/${id}`,appointment).then(res => {
-      setState({...state, appointments})
-      axios.get("api/days") 
-      .then((res) =>{
-        setState(prev => ({...prev,days: res.data}));
+
+      
+      return axios.put(`api/appointments/${id}`,appointment).then(() => {
+      setState({...state, appointments,days})
       })
-      return res;
-    })
     }
 
     function cancelInterview(id) {
+      const days= [...state.days];
+      const day = days.find((d)  => d.name === state.day)
+      if(state.appointments[id].interview) {
+        day.spots++;
+      }
       const appointment = {
         ...state.appointments[id]
       }
@@ -53,14 +60,12 @@ export function useApplicationData() {
       };
       return axios.delete(`api/appointments/${id}`)
       .then(res => {
-        setState({...state,appointments})
-        axios.get("api/days") 
-        .then((res) =>{
-        setState(prev => ({...prev,days: res.data}));
-      })
-        return res;
+        setState({...state,appointments,days})
       })
     }
 
     return { state, setDay, bookInterview, cancelInterview };
 }
+
+
+

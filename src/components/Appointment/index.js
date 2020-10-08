@@ -39,17 +39,17 @@ function save(name, interviewer) {
     student: name,
     interviewer
   };
-  transition(SAVING);
+  transition(SAVING, true);
   props.bookInterview(props.id, interview)
   .then(() => transition(SHOW))
-  .catch(error =>transition(ERROR_SAVE,true));
+  .catch(() =>transition(ERROR_SAVE,true));
 }
 
 function cancel() {
   transition(DELETE, true);
   props.cancelInterview(props.id)
   .then(() => transition(EMPTY))
-  .catch(error => transition(ERROR_DELETE,true));
+  .catch(() => transition(ERROR_DELETE,true));
 }
 
 
@@ -88,7 +88,7 @@ function cancel() {
       <Form
       interviewers ={props.interviewers}
       name ={props.interview.student}
-      interviewer={props.interview.interviewer}
+      interviewer={props.interview.interviewer.id}
       onSave={save}
       onCancel={()=>back()}
       />

@@ -17,11 +17,8 @@ export default function Form (props) {
     return props.onCancel();
   };
 
-  // const save = () => {
-  //   return props.onSave(name, interviewer);
-  // };
-
-  function validate() {
+ 
+  const validate=() =>{
     if (name === "") {
       setError("Student name cannot be blank");
       return;
@@ -32,7 +29,7 @@ export default function Form (props) {
 
 
   return (
-    <main className="appointment__card appointment__card--create">
+    <main className="appointment__card appointment__card--create" >
       <section className="appointment__card-left">
         <form onSubmit={event => {event.preventDefault(); }}autoComplete="off">
           <input

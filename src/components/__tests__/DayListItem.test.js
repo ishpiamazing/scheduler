@@ -6,6 +6,8 @@ import DayListItem from "components/DayListItem";
 
 afterEach(cleanup);
 
+
+describe("DayListItem", () => {
 it("renders without crashing", () => {
   render(<DayListItem />);
 });
@@ -24,3 +26,5 @@ it("renders '2 spots remaining' when there are 2 spots", () => {
   const { getByText } = render(<DayListItem name="Monday" spots={2} />);
   expect(getByText("2 spots remaining")).toBeInTheDocument();
 });
+
+})

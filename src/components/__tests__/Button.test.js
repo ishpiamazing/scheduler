@@ -6,6 +6,8 @@ import Button from "components/Button";
 
 afterEach(cleanup);
 
+
+describe("Button", () => {
 it("renders without crashing", () => {
   render(<Button />);
 });
@@ -57,3 +59,5 @@ it("renders a disabled button", () => {
 
   expect(handleClick).toHaveBeenCalledTimes(0);
 });
+
+})
