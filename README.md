@@ -7,7 +7,7 @@ Interview Scheduler is a Full Stack Web Application built in ReactJS with Storyb
 !["Initial Page"](https://github.com/ishpiamazing/scheduler/blob/master/docs/initial_page.png?raw=true)
 !["Booking Interview"](https://github.com/ishpiamazing/scheduler/blob/master/docs/booking_interview.png?raw=true)
 !["Interview Booked and spots updated"](https://github.com/ishpiamazing/scheduler/blob/master/docs/booked_interview.png?raw=true)
-!["Editing the student name or interviewer"]("https://github.com/ishpiamazing/scheduler/blob/master/docs/edit_interview.png?raw=true")
+!["Editing the student name or interviewer"](https://github.com/ishpiamazing/scheduler/blob/master/docs/edit_interview.png?raw=true")
 !["Deleting the slot and updating spots accordingly"](https://github.com/ishpiamazing/scheduler/blob/master/docs/delete_interview.png?raw=true)
 
 
